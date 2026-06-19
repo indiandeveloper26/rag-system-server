@@ -201,6 +201,7 @@ export const setupRAG = async (req, res) => {
                 url: process.env.QDRANT_URL,
                 apiKey: process.env.QDRANT_API_KEY,
                 collectionName: "ragsystem",
+                checkCompatibility: false,
             }
         );
 
@@ -208,6 +209,8 @@ export const setupRAG = async (req, res) => {
         // temp delete
         fs.unlinkSync(pdfPath);
 
+
+        console.log('PDF processed successfully')
 
 
         res.json({

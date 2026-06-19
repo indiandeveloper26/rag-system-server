@@ -35,7 +35,6 @@ app.use(express.json());
 app.use("/ai", ragrouter);
 
 
-console.log('env', process.env.GOOGLE_API_KEY)
 
 
 app.get("/", (Req, res) => {

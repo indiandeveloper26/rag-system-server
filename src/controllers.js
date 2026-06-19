@@ -1,6 +1,7 @@
 import { Chroma } from "@langchain/community/vectorstores/chroma";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { ChatGroq } from "@langchain/groq";
+import { QdrantVectorStore } from "@langchain/qdrant";
 
 
 export const ragController = async (req, res) => {
@@ -182,24 +183,17 @@ ${question}
         // Chroma
 
 
-        const vectorStore =
-            await Chroma.fromExistingCollection(
 
-                embeddings,
 
-                {
 
-                    collectionName: "ragpdf",
-
-                    host: "localhost",
-
-                    port: 8000,
-
-                    ssl: false
-
-                }
-
-            );
+        const vectorStore = await QdrantVectorStore.fromExistingCollection(
+            embeddings,
+            {
+                url: process.env.QDRANT_URL,
+                apiKey: process.env.QDRANT_API_KEY,
+                collectionName: "ragsystem",
+            }
+        );
 
 
 
