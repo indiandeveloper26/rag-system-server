@@ -1,53 +1,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import express from "express";
-import cors from "cors";
-import ragrouter from "./src/routers.js";
 import dotenv from "dotenv";
-
+import app from "./src/app.js";
 
 
 dotenv.config();
 
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+console.log('dnd', process.env.MONGODB_URI)
 
-// Routes link karein
-app.use("/ai", ragrouter);
+const PORT = process.env.PORT || 5000;
 
-
-
-
-app.get("/", (Req, res) => {
-  res.json({ 'server': "runinggg" })
-})
-
-
-//rag()
-
-
-
-const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`👉 Test API at: http://localhost:5000/api/rag/askee`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

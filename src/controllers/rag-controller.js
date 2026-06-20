@@ -1,10 +1,22 @@
-import { Chroma } from "@langchain/community/vectorstores/chroma";
+
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { ChatGroq } from "@langchain/groq";
 import { QdrantVectorStore } from "@langchain/qdrant";
-
+import { QdrantClient } from "@qdrant/js-client-rest";
 
 export const ragController = async (req, res) => {
+
+
+    const qdrantClient = new QdrantClient({
+
+        url: process.env.QDRANT_URL,
+
+        apiKey: process.env.QDRANT_API_KEY,
+
+        checkCompatibility: false
+
+    });
+
 
 
     try {
@@ -183,19 +195,20 @@ ${question}
         // Chroma
 
 
+        console.log('envdatat', process.env.QDRANT_URL, process.env.QDRANT_API_KEY,)
 
 
 
-        const vectorStore = await QdrantVectorStore.fromExistingCollection(
-            embeddings,
-            {
-                url: process.env.QDRANT_URL,
-                apiKey: process.env.QDRANT_API_KEY,
-                collectionName: "ragsystem",
-            }
-        );
 
+        const vectorStore =
+            await QdrantVectorStore.fromExistingCollection(
+                embeddings,
+                {
+                    client: qdrantClient,
 
+                    collectionName: "ragsystem",
+                }
+            );
 
 
 

@@ -1,6 +1,6 @@
 import express from "express";
-import { ragController } from "./controllers.js";
-import { setupRAG } from "./controllers/pdfsave.js";
+import { ragController } from "./controllersr.js";
+import { setupRAG } from "../pdfsave.js";
 
 
 
