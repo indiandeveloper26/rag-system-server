@@ -3,12 +3,22 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 
+dotenv.config();
+
 import ragrouter from "./routes/rag-auth.js";
 import router from "./routes/auth.js";
+import payment from "./routes/paymentRoutes.js"
+
+
+
+
+
 import connectDB from "./confing/db.js";
+import coursecrate from "./routes/courses.js"
+
+import Enrollment from "./models/Enrollment.js";
 
 
-dotenv.config();
 
 const app = express();
 
@@ -36,14 +46,60 @@ connectDB();
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Server Running v.2 🚀"
+        message: "Server Running  v- 1.2.0 🚀"
     });
 });
 
 
 app.use("/auth", router);
+app.use("/courses/", coursecrate);
+app.use("/payment/", payment);
 
 app.use("/rag", ragrouter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/api", async (req, res) => {
+    try {
+
+        let data = await Enrollment.find()
+
+
+        res.json({ 'data': data })
+
+    } catch (error) {
+        res.send("error")
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export default app;

@@ -1,6 +1,6 @@
 {
   "name": "rag-syatem",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "license": "ISC",
   "author": "",
@@ -25,6 +25,7 @@
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
+    "crypto": "^1.0.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "groq-sdk": "^1.2.1",
@@ -33,7 +34,8 @@
     "mongoose": "^9.7.1",
     "openai": "^6.34.0",
     "pdf-parse": "^1.1.4",
-    "pdfkit": "^0.19.1"
+    "pdfkit": "^0.19.1",
+    "razorpay": "^2.9.6"
   },
   "keywords": []
 }

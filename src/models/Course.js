@@ -2,53 +2,73 @@ import mongoose from "mongoose";
 
 const courseSchema = new mongoose.Schema(
     {
-        title: String,
-
-        description: String,
-
-        thumbnail: String,
-
-        category: String,
-
+        title: {
+            type: String,
+            required: [true, "Course title is required"],
+            trim: true
+        },
+        description: {
+            type: String,
+            required: [true, "Course description is required"]
+        },
+        liveVideoUrl: {
+            type: String,
+            default: ""
+        },
+        category: {
+            type: String,
+            required: [true, "Category is required"]
+        },
         level: {
             type: String,
-            enum: [
-                "beginner",
-                "intermediate",
-                "advanced",
-            ],
+            enum: ["beginner", "intermediate", "advanced"],
+            default: "beginner"
         },
 
+        // 🔑 Yeh field track karegi ki kis User (Instructor) ne course upload kiya hai
         instructor: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+            ref: "Aiselleruser", // Aapke User model ka jo bhi naam ho (e.g., "User" ya "Instructor")
+            required: [true, "Instructor UserID is required to upload a course"]
         },
 
-        price: Number,
-
-        language: String,
-
-        totalLessons: Number,
-
-        totalDuration: Number,
-
+        price: {
+            type: Number,
+            required: [true, "Price is required"],
+            default: 0
+        },
+        language: {
+            type: String,
+            default: "English"
+        },
+        totalLessons: {
+            type: Number,
+            default: 0
+        },
+        totalDuration: {
+            type: Number, // In minutes or hours
+            default: 0
+        },
         rating: {
             type: Number,
-            default: 0,
+            default: 0
         },
-
         totalStudents: {
             type: Number,
-            default: 0,
+            default: 0
         },
-
         status: {
             type: String,
             enum: ["pending", "approved", "rejected"],
-            default: "pending",
-        },
+            default: "pending"
+        }
     },
-    { timestamps: true }
+    {
+        timestamps: true // Isse createdAt aur updatedAt automatic mil jayega
+    }
 );
 
-export default mongoose.model("Course", courseSchema);
+// Next.js ke hot-reloading crash se bachne ke liye standard check
+const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
+
+export default Course;

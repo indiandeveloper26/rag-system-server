@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        accountBalance: {
+            type: Number,
+            default: 10000, // Dummy balance
+        },
 
         totalEarned: {
             type: Number,
