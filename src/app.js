@@ -48,7 +48,7 @@ connectDB();
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Server Running  v- 1.2.0 🚀"
+        message: "Server Running  v- 1.2.1 🚀"
     });
 });
 
