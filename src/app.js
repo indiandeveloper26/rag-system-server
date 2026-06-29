@@ -17,6 +17,8 @@ import connectDB from "./confing/db.js";
 import coursecrate from "./routes/courses.js"
 
 import Enrollment from "./models/Enrollment.js";
+import Course from "./models/Course.js";
+import User from "./models/user.js";
 
 
 

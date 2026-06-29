@@ -4,6 +4,8 @@ export const getMyCourses = async (req, res) => {
     try {
         const { id } = req.params;
 
+        console.log('apicalingg with id', id)
+
         if (!id) {
             return res.status(400).json({
                 success: false,
@@ -19,6 +21,10 @@ export const getMyCourses = async (req, res) => {
                 path: "course", // small c
             })
             .sort({ createdAt: -1 });
+
+
+
+        console.log('atatat', enrollments)
 
         if (enrollments.length === 0) {
             return res.status(404).json({

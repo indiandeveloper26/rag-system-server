@@ -11,6 +11,7 @@ export const uploadCourse = async (req, res) => {
             price,
             language,
             totalLessons,
+            instructorname,
             totalDuration,
             liveVideoUrl,
             instructor // 👈 Yeh rhi tumhari userId jo body se aa rahi hai
@@ -30,6 +31,7 @@ export const uploadCourse = async (req, res) => {
             description,
             liveVideoUrl: liveVideoUrl || "",
             category,
+            instructorname,
             level,
             instructor: instructor, // 👈 req.body waali userId yahan map ho gayi
             price,

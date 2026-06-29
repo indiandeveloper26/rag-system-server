@@ -15,6 +15,12 @@ const courseSchema = new mongoose.Schema(
             type: String,
             default: ""
         },
+        refundExpiry: {
+            type: Date,
+            default: function () {
+                return new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+            },
+        },
         category: {
             type: String,
             required: [true, "Category is required"]
@@ -48,6 +54,9 @@ const courseSchema = new mongoose.Schema(
         totalDuration: {
             type: Number, // In minutes or hours
             default: 0
+        },
+        instructorname: {
+            type: String
         },
         rating: {
             type: Number,
