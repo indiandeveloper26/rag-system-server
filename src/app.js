@@ -8,7 +8,7 @@ dotenv.config();
 import ragrouter from "./routes/rag-auth.js";
 import router from "./routes/auth.js";
 import payment from "./routes/paymentRoutes.js"
-
+import refund from "./routes/refund.js"
 
 
 
@@ -19,6 +19,7 @@ import coursecrate from "./routes/courses.js"
 import Enrollment from "./models/Enrollment.js";
 import Course from "./models/Course.js";
 import User from "./models/user.js";
+
 
 
 
@@ -48,7 +49,7 @@ connectDB();
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Server Running  v- 1.2.1 🚀"
+        message: "Server Running  v- 1.2.2 🚀"
     });
 });
 
@@ -56,6 +57,8 @@ app.get("/", (req, res) => {
 app.use("/auth", router);
 app.use("/courses/", coursecrate);
 app.use("/payment/", payment);
+
+app.use("/refund/", refund);
 
 app.use("/rag", ragrouter);
 
